@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Create {% endblock %}
+
+{% block content %}
+
+<h1>Create short url here...</h1>
+
+<div style="max-width: 500px; margin: 100px auto; text-align: center; font-family: sans-serif; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+    <h2>🔗 URL Shortener</h2>
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="url" name="long_url" placeholder="Paste your long link here..." required 
+               style="width: 80%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+        <br>
+        <button type="submit" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Shorten!
+        </button>
+
+        {% if newurl %}
+            <div style="padding-top: 4%;">
+                <a href="{{newurl}}">{{newurl}}</a>
+            </div>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}

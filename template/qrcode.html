@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Urls {% endblock %}
+
+{% block content %}
+{% load qr_code %}
+
+<h1>Qr code</h1>
+<div class="container border p-3" style="padding-top: 4;">
+
+{% for item in tree %}
+    {% qr_from_text item.short size=20 %}
+{% endfor %}
+<br>
+<div class="d-flex justify-content-left">
+    <a href="{% url 'urllist' %}" class="btn btn-primary">Back</a>
+  </div>
+</div>
+
+{% endblock %}

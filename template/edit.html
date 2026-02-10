@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Create {% endblock %}
+
+{% block content %}
+
+<h1>Edit short url here...</h1>
+
+<div style="max-width: 500px; margin: 100px auto; text-align: center; font-family: sans-serif; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+
+<form method="POST" action="">
+        {% csrf_token %}
+
+        <input type="hidden" name="original_url" value="{{ urls.original_url }}">
+
+        <input type="text" name="short" id="short" required 
+               style="width: 80%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;"
+               value="{{urls.short}}">
+        <br>
+        <button type="submit" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Edit
+        </button>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div style="padding: 10px; margin-bottom: 20px; border: 1px solid red; color: red; background: #fee;">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

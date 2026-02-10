@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Urls {% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<!-- {% load qr_code %} -->
+<h1>This is the list of url you have shortened</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Long Url</th>
+      <th scope="col">Short Url</th>
+      <th scope="col">Click</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Action</th>
+      <th scope="col">Qr Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in urls %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{item.original_url}}</td>
+      <td><a href="http://127.0.0.1:8000/{{item.short}}">http://127.0.0.1:8000/{{item.short}}</a></td>
+      <td>{{item.click}}</td>
+      <td>{{item.created_at}}</td>
+      <td>
+        <a href="{% url 'delete' pk=item.id %}" type="button" class="btn btn-danger">Delete</a>
+        <a href="{% url 'edit' pk=item.id %}" type="button" class="btn btn-secondary">Edit</a>
+      </td>
+      <td>
+        <a href="{% url 'qrcode' pk=item.id %}" type="button" class="btn btn-link">Click Here </a>
+
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
